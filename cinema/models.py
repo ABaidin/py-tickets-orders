@@ -95,10 +95,10 @@ class Ticket(models.Model):
                 raise error_to_raise(
                     {
                         ticket_attr_name: (
-                            f"""{ticket_attr_name} number 
-                            must be in available range: 
-                            (1, {cinema_hall_attr_name}): 
-                            (1, {count_attrs})"""
+                            f"""
+{ticket_attr_name} number must be in available range: 
+(1, {cinema_hall_attr_name}): (1, {count_attrs})
+"""
                         )
                     }
                 )
