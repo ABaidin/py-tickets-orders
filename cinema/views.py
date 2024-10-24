@@ -59,16 +59,17 @@ class MovieViewSet(viewsets.ModelViewSet):
 
         queryset = super().get_queryset().prefetch_related("genres", "actors")
 
-        if title:
-            queryset = queryset.filter(title__icontains=title)
+        if self.action == "list":
+            if title:
+                queryset = queryset.filter(title__icontains=title)
 
-        if genres:
-            genres_ids = self._params_to_ints(genres)
-            queryset = queryset.filter(genres__id__in=genres_ids)
+            if genres:
+                genres_ids = self._params_to_ints(genres)
+                queryset = queryset.filter(genres__id__in=genres_ids)
 
-        if actors:
-            actors_ids = self._params_to_ints(actors)
-            queryset = queryset.filter(actors__id__in=actors_ids)
+            if actors:
+                actors_ids = self._params_to_ints(actors)
+                queryset = queryset.filter(actors__id__in=actors_ids)
 
         return queryset.distinct()
 
